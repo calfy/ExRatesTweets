@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ExRatesTweets.W8
 {
     interface IExchangeRatesService
     {
-        List<Currency> getCurentRates();
+        Task<List<Currency>> GetCurentRates();
         Currency getRatesForCurrency(string code);
     }
 }

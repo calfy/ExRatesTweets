@@ -22,9 +22,14 @@ namespace ExRatesTweets.W8
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private IExchangeRatesService service;
+
         public MainPage()
         {
             this.InitializeComponent();
+            this.service = new NbpExRatesService();
+            var rates = this.service.GetCurentRates();
+
         }
     }
 }
