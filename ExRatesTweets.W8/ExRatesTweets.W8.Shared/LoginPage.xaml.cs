@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Tweetinvi;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,21 +29,41 @@ namespace ExRatesTweets.W8
         public LoginPage()
         {
             this.InitializeComponent();
+            loginGrid.Visibility = Visibility.Collapsed;
         }
 
         private void signinBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.twitterService = new TwitterService();
+            this.twitterService = TwitterService.Instance;
+
             var url = twitterService.GetAuthorizationUrl();
             webView.Navigate(new Uri(url));
+            signinBtn.Visibility = Visibility.Collapsed;
+            loginGrid.Visibility = Visibility.Visible;
         }
 
         private void confirmPinBtn_Click(object sender, RoutedEventArgs e)
         {
             var pin = pinTextBox.Text;
-            this.twitterService.Authorize(pin);
+            bool isAuthenticated = this.twitterService.Authorize(pin);
+            if (isAuthenticated)
+            {
+                Frame.Navigate(typeof(MainPage));
+            }
+            else
+            {
+                MessageDialog dlg = new MessageDialog("Nie poprawny kod PIN. Wprowadź ponownie.");
+                dlg.ShowAsync();
 
-            Tweet.PublishTweet("Hello world");
+                //pinTextBox.Text = "";
+                //webView.
+            }
+        }
+
+        private void webView_FrameNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+        {
+            MessageDialog dlg = new MessageDialog("Laduje");
+            dlg.ShowAsync();
         }
     }
 }

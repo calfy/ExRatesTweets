@@ -6,18 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <WebView x:Name="webView" HorizontalAlignment="Center" VerticalAlignment="Center" Height="459" Margin="156,59,277,250" Width="933" />
-        <Button x:Name="signinBtn" Content="Zaloguj się do TT" VerticalAlignment="Center" HorizontalAlignment="Center" Click="signinBtn_Click" Margin="619,669,598,61"/>
-        <Grid HorizontalAlignment="Left" Height="65" Margin="577,602,0,0" VerticalAlignment="Top" Width="228">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="47*"/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="pinTextBox" HorizontalAlignment="Left" Height="39" Margin="0,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="188"/>
-            <Button x:Name="confirmPinBtn" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="7,7,0,0" VerticalAlignment="Top" Height="45" Width="33" Click="confirmPinBtn_Click"/>
+        <Button x:Name="signinBtn" Content="&#xE2AF; Zaloguj się kontem Twitter" VerticalAlignment="Center" HorizontalAlignment="Center" Click="signinBtn_Click" FontFamily="Segoe UI Symbol" FontSize="18.667" />
+        <Grid Visibility="Visible" x:Name="loginGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <WebView x:Name="webView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FrameNavigationStarting="webView_FrameNavigationStarting" />
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="pinTextBox" HorizontalAlignment="Stretch" PlaceholderText="Wpisz kod" VerticalAlignment="Stretch" FontSize="21.333" Width="300" FontFamily="Consolas" Padding="10,5" TextAlignment="Center"/>
+                <Button x:Name="confirmPinBtn" Content="&#xE0AC;" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="confirmPinBtn_Click" FontFamily="Segoe UI Symbol" BorderThickness="0" FontSize="26.667"/>
+            </Grid>
         </Grid>
-
     </Grid>
 </Page>
