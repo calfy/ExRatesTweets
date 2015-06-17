@@ -7,7 +7,9 @@ namespace ExRatesTweets.W8
 {
     interface IExchangeRatesService
     {
+        DateTime RatesDate { get; }
+
         Task<List<Currency>> GetCurentRates();
-        Currency getRatesForCurrency(string code);
+        Currency GetRatesForCurrency(string code);
     }
 }

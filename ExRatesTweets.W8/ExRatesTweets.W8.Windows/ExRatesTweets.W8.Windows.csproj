@@ -109,6 +109,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Modern-UI-Icons---Social.ttf" />
     <None Include="ExRatesTweets.W8.Windows_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
