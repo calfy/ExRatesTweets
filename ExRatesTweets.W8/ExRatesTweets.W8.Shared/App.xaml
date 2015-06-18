@@ -3,5 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ExRatesTweets.W8">
+    <Application.Resources>
+        <SolidColorBrush x:Key="MainBackground" Color="#0072c6"/>
+        <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="#1CABFF" />
+        <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="#0072c6" />
+        <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#1CABFF" />
+    </Application.Resources>
 
 </Application>

@@ -1,0 +1,176 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ExRatesTweets.W8.Common
+{
+    public static class Flag
+    {
+        public static Dictionary<string, string> Flags { get; }
+
+        private static string path = "Assets/flags/";
+
+        static Flag()
+        {
+            Flags = new Dictionary<string, string>();
+            Flags.Add("EUR", String.Format("{0}eu.png", path));
+            Flags.Add("AED", String.Format("{0}ae.png", path));
+            Flags.Add("AFN", String.Format("{0}af.png", path));
+            Flags.Add("XCD", String.Format("{0}ag.png", path));
+            Flags.Add("ALL", String.Format("{0}al.png", path));
+            Flags.Add("AMD", String.Format("{0}am.png", path));
+            Flags.Add("AOA", String.Format("{0}ao.png", path));
+            Flags.Add("ARS", String.Format("{0}ar.png", path));
+            Flags.Add("USD", String.Format("{0}us.png", path));
+            Flags.Add("AUD", String.Format("{0}au.png", path));
+            Flags.Add("AWG", String.Format("{0}aw.png", path));
+            Flags.Add("AZN", String.Format("{0}az.png", path));
+            Flags.Add("BAM", String.Format("{0}ba.png", path));
+            Flags.Add("BBD", String.Format("{0}bb.png", path));
+            Flags.Add("BDT", String.Format("{0}bd.png", path));
+            Flags.Add("XOF", String.Format("{0}bf.png", path));
+            Flags.Add("BGN", String.Format("{0}bg.png", path));
+            Flags.Add("BHD", String.Format("{0}bh.png", path));
+            Flags.Add("BIF", String.Format("{0}bi.png", path));
+            Flags.Add("BMD", String.Format("{0}bm.png", path));
+            Flags.Add("BND", String.Format("{0}bn.png", path));
+            Flags.Add("BOB", String.Format("{0}bo.png", path));
+            Flags.Add("BRL", String.Format("{0}br.png", path));
+            Flags.Add("BSD", String.Format("{0}bs.png", path));
+            Flags.Add("BTN", String.Format("{0}bt.png", path));
+            Flags.Add("NOK", String.Format("{0}bv.png", path));
+            Flags.Add("BWP", String.Format("{0}bw.png", path));
+            Flags.Add("BYR", String.Format("{0}by.png", path));
+            Flags.Add("BZD", String.Format("{0}bz.png", path));
+            Flags.Add("CAD", String.Format("{0}ca.png", path));
+            Flags.Add("CDF", String.Format("{0}cd.png", path));
+            Flags.Add("XAF", String.Format("{0}cf.png", path));
+            Flags.Add("CHF", String.Format("{0}ch.png", path));
+            Flags.Add("NZD", String.Format("{0}nz.png", path));
+            Flags.Add("CLP", String.Format("{0}cl.png", path));
+            Flags.Add("CNY", String.Format("{0}cn.png", path));
+            Flags.Add("COP", String.Format("{0}co.png", path));
+            Flags.Add("CRC", String.Format("{0}cr.png", path));
+            Flags.Add("CUP", String.Format("{0}cu.png", path));
+            Flags.Add("CVE", String.Format("{0}cv.png", path));
+            Flags.Add("ANG", String.Format("{0}cw.png", path));
+            Flags.Add("CZK", String.Format("{0}cz.png", path));
+            Flags.Add("DJF", String.Format("{0}dj.png", path));
+            Flags.Add("DKK", String.Format("{0}dk.png", path));
+            Flags.Add("DOP", String.Format("{0}do.png", path));
+            Flags.Add("DZD", String.Format("{0}dz.png", path));
+            Flags.Add("EGP", String.Format("{0}eg.png", path));
+            Flags.Add("MAD", String.Format("{0}eh.png", path));
+            Flags.Add("ERN", String.Format("{0}er.png", path));
+            Flags.Add("ETB", String.Format("{0}et.png", path));
+            Flags.Add("FJD", String.Format("{0}fj.png", path));
+            Flags.Add("FKP", String.Format("{0}fk.png", path));
+            Flags.Add("GBP", String.Format("{0}gb.png", path));
+            Flags.Add("GEL", String.Format("{0}ge.png", path));
+            Flags.Add("GHS", String.Format("{0}gh.png", path));
+            Flags.Add("GIP", String.Format("{0}gi.png", path));
+            Flags.Add("GMD", String.Format("{0}gm.png", path));
+            Flags.Add("GNF", String.Format("{0}gn.png", path));
+            Flags.Add("GTQ", String.Format("{0}gt.png", path));
+            Flags.Add("GYD", String.Format("{0}gy.png", path));
+            Flags.Add("HKD", String.Format("{0}hk.png", path));
+            Flags.Add("HNL", String.Format("{0}hn.png", path));
+            Flags.Add("HRK", String.Format("{0}hr.png", path));
+            Flags.Add("HTG", String.Format("{0}ht.png", path));
+            Flags.Add("HUF", String.Format("{0}hu.png", path));
+            Flags.Add("IDR", String.Format("{0}id.png", path));
+            Flags.Add("ILS", String.Format("{0}il.png", path));
+            Flags.Add("INR", String.Format("{0}in.png", path));
+            Flags.Add("IQD", String.Format("{0}iq.png", path));
+            Flags.Add("IRR", String.Format("{0}ir.png", path));
+            Flags.Add("ISK", String.Format("{0}is.png", path));
+            Flags.Add("JMD", String.Format("{0}jm.png", path));
+            Flags.Add("JOD", String.Format("{0}jo.png", path));
+            Flags.Add("JPY", String.Format("{0}jp.png", path));
+            Flags.Add("KES", String.Format("{0}ke.png", path));
+            Flags.Add("KGS", String.Format("{0}kg.png", path));
+            Flags.Add("KHR", String.Format("{0}kh.png", path));
+            Flags.Add("KMF", String.Format("{0}km.png", path));
+            Flags.Add("KPW", String.Format("{0}kp.png", path));
+            Flags.Add("KRW", String.Format("{0}kr.png", path));
+            Flags.Add("KWD", String.Format("{0}kw.png", path));
+            Flags.Add("KYD", String.Format("{0}ky.png", path));
+            Flags.Add("KZT", String.Format("{0}kz.png", path));
+            Flags.Add("LAK", String.Format("{0}la.png", path));
+            Flags.Add("LBP", String.Format("{0}lb.png", path));
+            Flags.Add("LKR", String.Format("{0}lk.png", path));
+            Flags.Add("LRD", String.Format("{0}lr.png", path));
+            Flags.Add("LSL", String.Format("{0}ls.png", path));
+            Flags.Add("LYD", String.Format("{0}ly.png", path));
+            Flags.Add("MDL", String.Format("{0}md.png", path));
+            Flags.Add("MGA", String.Format("{0}mg.png", path));
+            Flags.Add("MKD", String.Format("{0}mk.png", path));
+            Flags.Add("MMK", String.Format("{0}mm.png", path));
+            Flags.Add("MNT", String.Format("{0}mn.png", path));
+            Flags.Add("MOP", String.Format("{0}mo.png", path));
+            Flags.Add("MRO", String.Format("{0}mr.png", path));
+            Flags.Add("MUR", String.Format("{0}mu.png", path));
+            Flags.Add("MVR", String.Format("{0}mv.png", path));
+            Flags.Add("MWK", String.Format("{0}mw.png", path));
+            Flags.Add("MXN", String.Format("{0}mx.png", path));
+            Flags.Add("MYR", String.Format("{0}my.png", path));
+            Flags.Add("MZN", String.Format("{0}mz.png", path));
+            Flags.Add("NAD", String.Format("{0}na.png", path));
+            Flags.Add("XPF", String.Format("{0}nc.png", path));
+            Flags.Add("NGN", String.Format("{0}ng.png", path));
+            Flags.Add("NIO", String.Format("{0}ni.png", path));
+            Flags.Add("NPR", String.Format("{0}np.png", path));
+            Flags.Add("OMR", String.Format("{0}om.png", path));
+            Flags.Add("PAB", String.Format("{0}pa.png", path));
+            Flags.Add("PEN", String.Format("{0}pe.png", path));
+            Flags.Add("PGK", String.Format("{0}pg.png", path));
+            Flags.Add("PHP", String.Format("{0}ph.png", path));
+            Flags.Add("PKR", String.Format("{0}pk.png", path));
+            Flags.Add("PLN", String.Format("{0}pl.png", path));
+            Flags.Add("PYG", String.Format("{0}py.png", path));
+            Flags.Add("QAR", String.Format("{0}qa.png", path));
+            Flags.Add("RON", String.Format("{0}ro.png", path));
+            Flags.Add("RSD", String.Format("{0}rs.png", path));
+            Flags.Add("RUB", String.Format("{0}ru.png", path));
+            Flags.Add("RWF", String.Format("{0}rw.png", path));
+            Flags.Add("SAR", String.Format("{0}sa.png", path));
+            Flags.Add("SBD", String.Format("{0}sb.png", path));
+            Flags.Add("SCR", String.Format("{0}sc.png", path));
+            Flags.Add("SDG", String.Format("{0}sd.png", path));
+            Flags.Add("SSP", String.Format("{0}ss.png", path));
+            Flags.Add("SEK", String.Format("{0}se.png", path));
+            Flags.Add("SGD", String.Format("{0}sg.png", path));
+            Flags.Add("SHP", String.Format("{0}sh.png", path));
+            Flags.Add("SLL", String.Format("{0}sl.png", path));
+            Flags.Add("SOS", String.Format("{0}so.png", path));
+            Flags.Add("SRD", String.Format("{0}sr.png", path));
+            Flags.Add("STD", String.Format("{0}st.png", path));
+            Flags.Add("SYP", String.Format("{0}sy.png", path));
+            Flags.Add("SZL", String.Format("{0}sz.png", path));
+            Flags.Add("THB", String.Format("{0}th.png", path));
+            Flags.Add("TJS", String.Format("{0}tj.png", path));
+            Flags.Add("TMT", String.Format("{0}tm.png", path));
+            Flags.Add("TND", String.Format("{0}tn.png", path));
+            Flags.Add("TOP", String.Format("{0}to.png", path));
+            Flags.Add("TRY", String.Format("{0}tr.png", path));
+            Flags.Add("TTD", String.Format("{0}tt.png", path));
+            Flags.Add("TWD", String.Format("{0}tw.png", path));
+            Flags.Add("TZS", String.Format("{0}tz.png", path));
+            Flags.Add("UAH", String.Format("{0}ua.png", path));
+            Flags.Add("UGX", String.Format("{0}ug.png", path));
+            Flags.Add("UYU", String.Format("{0}uy.png", path));
+            Flags.Add("UZS", String.Format("{0}uz.png", path));
+            Flags.Add("VEF", String.Format("{0}ve.png", path));
+            Flags.Add("VND", String.Format("{0}vn.png", path));
+            Flags.Add("VUV", String.Format("{0}vu.png", path));
+            Flags.Add("WST", String.Format("{0}ws.png", path));
+            Flags.Add("YER", String.Format("{0}ye.png", path));
+            Flags.Add("ZAR", String.Format("{0}za.png", path));
+            Flags.Add("ZMW", String.Format("{0}zm.png", path));
+            Flags.Add("ZWL", String.Format("{0}zw.png", path));
+
+
+        }
+
+    }
+}

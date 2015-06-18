@@ -38,7 +38,7 @@ namespace ExRatesTweets.W8
 
             var url = twitterService.GetAuthorizationUrl();
             webView.Navigate(new Uri(url));
-            signinBtn.Visibility = Visibility.Collapsed;
+            signinBox.Visibility = Visibility.Collapsed;
             loginGrid.Visibility = Visibility.Visible;
         }
 
@@ -64,6 +64,12 @@ namespace ExRatesTweets.W8
         {
             MessageDialog dlg = new MessageDialog("Laduje");
             dlg.ShowAsync();
+        }
+
+        private async void pinTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            string[] scrollToTopString = new string[] { @"// Define the function: function scrollToTop() {document.body.scrollTop = 0;} // now call the function! scrollToTop();" };
+            await this.webView.InvokeScriptAsync("eval", scrollToTopString);
         }
     }
 }

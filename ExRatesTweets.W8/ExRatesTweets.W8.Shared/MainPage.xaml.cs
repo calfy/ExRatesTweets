@@ -5,6 +5,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Tweetinvi;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media.Imaging;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ExRatesTweets.W8
@@ -21,24 +23,36 @@ namespace ExRatesTweets.W8
             this.InitializeComponent();
 
             this.service = new NbpExRatesService();
+            var loggedUser = User.GetLoggedUser();
+            this.userNameTextBlock.Text = loggedUser.Name;
+            this.userImage.Source = new BitmapImage(new Uri(loggedUser.ProfileImageUrl));
+
             FillRatesList();
 
+            //layout adjustment for WP
 #if WINDOWS_PHONE_APP
             this.dateTextBlock.FontSize = 20;
+            this.itemsGridView.Margin = new Thickness(20,0,0,0);
+            this.userNameTextBlock.Visibility = Visibility.Collapsed;
+            this.bottomAppBar.IsSticky = false;
 #endif
-
-            this.dateTextBlock.Text = this.service.RatesDate.ToString("dd.MM.yyyy");
-            this.service = new NbpExRatesService();
         }
 
         private async void FillRatesList()
         {
             var rates = await this.service.GetCurentRates();
             itemsGridView.ItemsSource = rates;
+            this.dateTextBlock.Text = String.Format("Kursy z dnia {0}", this.service.RatesDate.ToString("dd.MM.yyyy"));
         }
 
-        private void tweetBtn_Click(object sender, RoutedEventArgs e)
+        private async void tweetBtn_Click(object sender, RoutedEventArgs e)
         {
+            //show loading animation
+            progressRing.IsActive = true;
+
+            await Task.Yield();
+
+            //cut message into around 140 characters strings
             var tweetStrings = new List<string>();
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendFormat("Kursy z {0}\n", this.service.RatesDate.ToString("dd.MM.yyyy"));
@@ -70,6 +84,7 @@ namespace ExRatesTweets.W8
                     Tweet.PublishTweet(tweet);
                 }
             }
+            progressRing.IsActive = false;
 
             MessageDialog dlg = new MessageDialog("Opublikowano tweet");
             dlg.ShowAsync();

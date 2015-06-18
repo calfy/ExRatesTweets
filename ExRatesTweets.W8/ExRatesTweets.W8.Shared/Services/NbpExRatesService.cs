@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ExRatesTweets.Common;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +22,13 @@ namespace ExRatesTweets.W8
             var exchangeRates = new List<Currency>();
 
             var httpClient = new HttpClient();
-            var xmlString = await httpClient.GetStringAsync(new Uri(URL));
+            var xmlBytes = await httpClient.GetInputStreamAsync(new Uri(URL));
 
-            //Encoding iso = Encoding.GetEncoding("ISO-8859-2");
-            //Encoding utf8 = Encoding.UTF8;
-            //byte[] isoBytes = iso.GetBytes(xmlString);
-            //byte[] utfBytes = Encoding.Convert(iso, utf8, isoBytes);
-
-            //xmlString = Encoding.UTF8.GetString(utfBytes, 0, utfBytes.Length);
-
+            //regarding that WP doesn't have iso8859-2 incoding, need to use own class
+            //class generated via SL Encoding Generator program
+            Encoding iso8859_2 = new Iso8859_2();
+            var stream = new StreamReader(xmlBytes.AsStreamForRead(), iso8859_2);
+            String xmlString = stream.ReadToEnd();
 
             XDocument xDoc = XDocument.Parse(xmlString);
             this.RatesDate = DateTime.Parse(xDoc.Element("tabela_kursow").Element("data_publikacji").Value);
