@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExRatesTweets.W8
+namespace ExRatesTweets.W8.Interfaces
 {
     interface IExchangeRatesService
     {

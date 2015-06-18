@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExRatesTweets.W8.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Tweetinvi;
@@ -15,9 +16,7 @@ namespace ExRatesTweets.W8.Services
 
         private ITemporaryCredentials applicationCredentials;
 
-
         private static readonly TwitterService instance = new TwitterService();
-
         public static TwitterService Instance
         {
             get
@@ -34,12 +33,8 @@ namespace ExRatesTweets.W8.Services
 
         public bool Authorize(string pinCode)
         {
-            // Let Tweetinvi generates the credentials based on the given PIN Code
+            // Generate the credentials based on the given PIN Code
             var userCredentials = CredentialsCreator.GetCredentialsFromVerifierCode(pinCode, applicationCredentials);
-
-            // The callbackURL parameter is the entire URL that you controller received
-            // The URL will be parsed and used to generate the user credentials.
-            //var userCredentials = CredentialsCreator.GetCredentialsFromCallbackURL(callbackURL, applicationCredentials);
 
             if (userCredentials != null)
             {
@@ -61,10 +56,6 @@ namespace ExRatesTweets.W8.Services
         {
             //// Get the URL that the user needs to visit to accept your application
             var url = CredentialsCreator.GetAuthorizationURL(applicationCredentials);
-
-            // Get the URL that the user needs to visit to accept your application
-            //var url = CredentialsCreator.GetAuthorizationURLForCallback(applicationCredentials, "https://example.com/");
-
             return url;
         }
     }

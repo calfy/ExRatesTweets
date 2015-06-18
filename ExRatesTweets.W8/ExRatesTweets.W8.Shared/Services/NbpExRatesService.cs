@@ -1,4 +1,5 @@
 ﻿using ExRatesTweets.Common;
+using ExRatesTweets.W8.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;

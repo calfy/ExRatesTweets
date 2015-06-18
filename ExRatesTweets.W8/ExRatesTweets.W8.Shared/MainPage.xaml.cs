@@ -7,6 +7,8 @@ using Tweetinvi;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Threading.Tasks;
+using ExRatesTweets.W8.Interfaces;
+using ExRatesTweets.W8.Services;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ExRatesTweets.W8
@@ -16,13 +18,15 @@ namespace ExRatesTweets.W8
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private IExchangeRatesService service;
+        private IExchangeRatesService exRatesService;
+        private TwitterService twitterService;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            this.service = new NbpExRatesService();
+            this.exRatesService = new NbpExRatesService();
+            this.twitterService = TwitterService.Instance;
             var loggedUser = User.GetLoggedUser();
             this.userNameTextBlock.Text = loggedUser.Name;
             this.userImage.Source = new BitmapImage(new Uri(loggedUser.ProfileImageUrl));
@@ -40,9 +44,9 @@ namespace ExRatesTweets.W8
 
         private async void FillRatesList()
         {
-            var rates = await this.service.GetCurentRates();
+            var rates = await this.exRatesService.GetCurentRates();
             itemsGridView.ItemsSource = rates;
-            this.dateTextBlock.Text = String.Format("Kursy z dnia {0}", this.service.RatesDate.ToString("dd.MM.yyyy"));
+            this.dateTextBlock.Text = String.Format("Kursy z dnia {0}", this.exRatesService.RatesDate.ToString("dd.MM.yyyy"));
         }
 
         private async void tweetBtn_Click(object sender, RoutedEventArgs e)
@@ -50,12 +54,10 @@ namespace ExRatesTweets.W8
             //show loading animation
             progressRing.IsActive = true;
 
-            await Task.Yield();
-
             //cut message into around 140 characters strings
             var tweetStrings = new List<string>();
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("Kursy z {0}\n", this.service.RatesDate.ToString("dd.MM.yyyy"));
+            stringBuilder.AppendFormat("Kursy z {0}\n", this.exRatesService.RatesDate.ToString("dd.MM.yyyy"));
             foreach (var item in itemsGridView.SelectedItems)
             {
                 var currency = (Currency)item;
@@ -74,14 +76,14 @@ namespace ExRatesTweets.W8
 
             if (tweetStrings.Count == 1)
             {
-                Tweet.PublishTweet(tweetStrings[0]);
+                this.twitterService.PublishTweet(tweetStrings[0]);
             }
             else
             {
                 for (int i = tweetStrings.Count; i > 0; i--)
                 {
                     var tweet = String.Format("{0} {1}", String.Format("({0}/{1})", i, tweetStrings.Count), tweetStrings[i - 1]);
-                    Tweet.PublishTweet(tweet);
+                    this.twitterService.PublishTweet(tweet);
                 }
             }
             progressRing.IsActive = false;
@@ -89,9 +91,8 @@ namespace ExRatesTweets.W8
             MessageDialog dlg = new MessageDialog("Opublikowano tweet");
             dlg.ShowAsync();
 
-            //clear selected items
+            //clear selected item index
             itemsGridView.SelectedIndex = -1;
-
         }
 
         private void selectAllBtn_Click(object sender, RoutedEventArgs e)

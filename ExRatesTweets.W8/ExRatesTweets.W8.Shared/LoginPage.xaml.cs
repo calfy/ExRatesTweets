@@ -54,9 +54,6 @@ namespace ExRatesTweets.W8
             {
                 MessageDialog dlg = new MessageDialog("Nie poprawny kod PIN. Wprowadź ponownie.");
                 dlg.ShowAsync();
-
-                //pinTextBox.Text = "";
-                //webView.
             }
         }
 
